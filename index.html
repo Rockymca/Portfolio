@@ -121,20 +121,28 @@
 
         .nav-links a:hover::after { width: 100%; }
 
-        .btn-hire {
+        /* General Button Style */
+        .btn-hire, .btn-download {
             padding: 0.6rem 1.5rem;
             background-color: var(--primary-blue);
             color: white !important;
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
         }
 
-        .btn-hire:hover {
+        .btn-hire:hover, .btn-download:hover {
             background-color: var(--dark-blue);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
         
-        .btn-hire::after { display: none !important; }
+        .btn-hire::after, .btn-download::after { display: none !important; }
 
         .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
 
@@ -296,9 +304,15 @@
 
         /* --- RESUME SECTION --- */
         .resume-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
+        }
+
+        .resume-cards-wrapper {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+             gap: 2rem;
         }
 
         .resume-card {
@@ -328,13 +342,24 @@
             margin-bottom: 1rem;
             display: block;
         }
-
-        .resume-card ul {
-            list-style-position: inside;
-            color: var(--text-light);
+        
+        .download-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-soft);
+            border-radius: 15px;
+            text-align: center;
         }
-
-        .resume-card li { margin-bottom: 0.5rem; }
+        
+        .download-text {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            max-width: 600px;
+        }
 
         /* --- PROJECTS SECTION --- */
         .project-card {
@@ -345,6 +370,7 @@
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(37, 99, 235, 0.1);
+            margin-bottom: 2rem;
         }
 
         .project-card::before {
@@ -362,6 +388,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .badge {
@@ -522,7 +550,7 @@
     <div class="shape shape-3"></div>
 
     <nav>
-        <a href="#" class="logo">Rakesh<span>var</span>.</a>
+        <a href="#" class="logo">Rakeshvar<span> K</span>.</a>
         <div class="hamburger">
             <i class="fas fa-bars"></i>
         </div>
@@ -539,19 +567,19 @@
         <div class="home-content">
             <p class="greeting">Hello, I am</p>
             <h1 class="name">K.S. <span>Rakeshvar</span></h1>
-            <h2 class="role">DevOps Engineer</h2>
+            <h2 class="role">DevOps Engineer Fresher</h2>
             <p class="summary">
-                DevOps Engineer with hands-on experience in AWS cloud services, CI/CD automation, and infrastructure as code. 
-                Skilled in building and deploying applications using Jenkins, Docker, Terraform, and CloudFormation.
+                MCA Degree-holder with a Bachelor of Computer Applications foundation and an AWS DevOps certification from GUVI.
+                Currently searching for an entry-level AWS DevOps Engineer position to implement my existing skills and evolve alongside the company.
             </p>
             <div class="socials">
-                <a href="https://www.linkedin.com/in/rakeshvar-k-s-8a63b7296/in" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.linkedin.com/in/rakeshvar-k-s-8a63b7296/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://github.com/Rockymca" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="mailto:rockyofficial5030@gmail.com"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
         <div class="home-img">
-            <img src="Gemini_Generated_Image_9jt8gu9jt8gu9jt8.jpg" alt="Rakeshvar Profile">
+            <img src="profile.png" alt="Rakeshvar Profile">
         </div>
     </section>
 
@@ -561,9 +589,11 @@
             <div class="about-text">
                 <h3>Motivated to build reliable cloud infrastructure.</h3>
                 <p>
-                    I am a passionate DevOps Engineer based in Chennai, India. I hold a Master of Computer Applications (MCA) 
-                    and have dedicated my skills to mastering cloud technologies. My focus is on automating complex workflows, 
-                    optimizing deployments, and ensuring system scalability.
+                    I’m motivated to build reliable cloud infrastructure and love solving challenges along the way.
+I’m a DevOps Engineer based in Chennai, India, passionate about all things cloud.
+With a Master of Computer Applications (MCA), I enjoy learning and mastering new cloud technologies.
+My focus is on automating workflows, optimizing deployments, and creating scalable systems that just work.
+                   
                 </p>
                 <div class="skills-grid">
                     <span class="skill-tag">AWS (EC2, S3, IAM, VPC)</span>
@@ -576,26 +606,63 @@
                     <span class="skill-tag">Git & GitHub</span>
                 </div>
             </div>
-            <div class="resume-card" style="border-left-color: var(--accent-yellow);">
-                <h3>Education</h3>
-                <br>
-                <div>
-                    <h4>Master of Computer Applications</h4>
-                    <span class="date">2023 - 2025</span>
-                    <p>Vels Institute of Science Technology and Advanced Studies | CGPA: 7.17/10</p>
-                </div>
-                <br>
-                <div>
-                    <h4>Bachelor of Computer Applications</h4>
-                    <span class="date">2020 - 2023</span>
-                    <p>Avichi College of Arts and Science | CGPA: 8.63/10</p>
+            <div class="resume-cards-wrapper" style="display:block;">
+                <div class="resume-card" style="border-left-color: var(--accent-yellow);">
+                    <h3>Education</h3>
+                    <br>
+                    <div>
+                        <h4>Master of Computer Applications</h4>
+                        <span class="date">2023 - 2025</span>
+                        <p>Vels Institute of Science Technology and Advanced Studies [cite: 79]</p>
+                    </div>
+                    <br>
+                    <div>
+                        <h4>Bachelor of Computer Applications</h4>
+                        <span class="date">2020 - 2023</span>
+                        <p>Avichi College of Arts and Science [cite: 82]</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="resume">
+        <h2 class="section-title">Resume</h2>
+        <div class="resume-container">
+             <div class="download-container">
+                 <p class="download-text">
+                     Download my full resume to see my detailed experience, technical skills, and academic history.
+                 </p>
+                 <a href="rakeshvarks_pdf.pdf" download="Rakeshvar_Resume.pdf" class="btn-download">
+                     <i class="fas fa-download" style="margin-right: 8px;"></i> Download Resume
+                 </a>
+             </div>
+        </div>
+    </section>
+
     <section id="projects">
-        <h2 class="section-title">Featured Project</h2>
+        <h2 class="section-title">Featured Projects</h2>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <h3>React Application Deployment using DevOps</h3>
+                <span class="badge">Apr 2025 - May 2025</span>
+            </div>
+            <p><strong>Role:</strong> DevOps Engineer</p>
+            <div class="project-details">
+                <ul>
+                    <li>Deployed a React application into a production-ready environment using DevOps practices[cite: 72].</li>
+                    <li>Containerised the application using Docker and Docker Compose[cite: 73].</li>
+                    <li>Implemented CI/CD pipelines with Jenkins for automated build and deployment[cite: 73].</li>
+                    <li>Managed source code using GitHub with dev and master branches[cite: 73].</li>
+                    <li>Pushed Docker images to Docker Hub with separate dev and prod repositories[cite: 74].</li>
+                    <li>Deployed on AWS EC2 with proper security group configuration[cite: 75].</li>
+                </ul>
+            </div>
+            <br>
+            <a href="https://github.com/Rockymca/DEVOPS-Build-" class="btn-hire" style="font-size:0.9rem;">View on GitHub</a>
+        </div>
+
         <div class="project-card">
             <div class="project-header">
                 <h3>Automated CI/CD Pipeline on AWS</h3>
@@ -604,16 +671,12 @@
             <p><strong>Role:</strong> DevOps/Cloud Ops Engineer</p>
             <div class="project-details">
                 <ul>
-                    <li>Designed and implemented a fully automated CI/CD pipeline using Jenkins, Docker, and Bash.</li>
-                    <li>Integrated AWS CodePipeline, CodeBuild, and CodeDeploy to automate application build, test, and release.</li>
-                    <li>Reduced manual deployment effort by 80% by introducing automated workflows.</li>
-                    <li>Used Terraform & CloudFormation to provision AWS infrastructure with full repeatability.</li>
-                    <li>Configured CloudWatch alarms and dashboards, reducing incident response time by 30%.</li>
-                    <li>Managed S3 for artifact storage, EC2 for hosting, and IAM for security.</li>
+                    <li>Designed and implemented a fully automated CI/CD pipeline using Jenkins, Docker, and Bash[cite: 35].</li>
+                    <li>Integrated AWS CodePipeline, CodeBuild, and CodeDeploy to automate application build, test, and release[cite: 36].</li>
+                    <li>Reduced manual deployment effort by 80% by introducing automated workflows[cite: 37].</li>
+                    <li>Used Terraform & CloudFormation to provision AWS infrastructure with full repeatability[cite: 38].</li>
                 </ul>
             </div>
-            <br>
-            <a href="https://github.com/Rockymca" class="btn-hire" style="font-size:0.9rem;">View on GitHub</a>
         </div>
     </section>
 
@@ -622,23 +685,13 @@
         <div class="cert-grid">
             <div class="cert-card">
                 <div class="cert-icon"><i class="fab fa-aws"></i></div>
-                <h3>AWS-DevOps</h3>
-                <p>Hands-on experience in modern tools for efficient cloud operations.</p>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon"><i class="fas fa-cloud"></i></div>
-                <h3>AWS Cloud Practitioner</h3>
-                <p>Foundational understanding of core AWS services and best practices.</p>
+                <h3>AWS Certified Cloud Practitioner</h3>
+                <p>Amazon Web Services - Foundational understanding of AWS Cloud.</p>
             </div>
             <div class="cert-card">
                 <div class="cert-icon"><i class="fas fa-graduation-cap"></i></div>
-                <h3>NPTEL Cloud Computing</h3>
-                <p>ELITE Certificate recipient.</p>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon"><i class="fas fa-book"></i></div>
-                <h3>Academic Contribution</h3>
-                <p>Published paper in International Journal of Science, Engineering and Technology.</p>
+                <h3>Cloud Computing (ELITE)</h3>
+                <p>NPTEL - Advanced Cloud Concepts.</p>
             </div>
         </div>
     </section>
@@ -657,40 +710,49 @@
                     <div class="info-icon"><i class="fas fa-envelope"></i></div>
                     <div>
                         <h4>Email</h4>
-                        <p>rockyofficial5030@gmail.com</p>
+                        <p>rockyofficial5030@gmail.com </p>
                     </div>
                 </div>
                 <div class="info-item">
                     <div class="info-icon"><i class="fas fa-phone"></i></div>
                     <div>
                         <h4>Phone</h4>
-                        <p>+91 91762 85030</p>
+                        <p>+91 91762 85030 </p>
                     </div>
                 </div>
                 <div class="info-item">
                     <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div>
                         <h4>Location</h4>
-                        <p>Chennai, India</p>
+                        <p>Chennai, India </p>
                     </div>
                 </div>
             </div>
+                   <div class="why-hire-me" style="display: flex; flex-direction: column; gap: 1.5rem;">
+    <h3 style="color: var(--text-dark); border-bottom: 2px solid var(--accent-yellow); padding-bottom: 10px; width: fit-content;">Professional Value</h3>
+    
+    <div class="value-item" style="background: var(--bg-soft); padding: 1.5rem; border-radius: 12px; border-left: 5px solid var(--primary-blue);">
+        <h4 style="color: var(--primary-blue); margin-bottom: 8px;"><i class="fas fa-rocket"></i> Automation & Efficiency</h4>
+        <p style="color: var(--text-light); font-size: 0.95rem;">Reduced manual deployment effort by 80% by introducing automated build and deployment workflows using Jenkins, Docker, and Bash.</p>
+    </div>
 
-            <form class="contact-form" action="mailto:rockyofficial5030@gmail.com" method="post" enctype="text/plain">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Subject" value="Opportunity">
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" rows="5" placeholder="How can I help you?"></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Send Message</button>
-            </form>
+    <div class="value-item" style="background: var(--bg-soft); padding: 1.5rem; border-radius: 12px; border-left: 5px solid var(--accent-yellow);">
+        <h4 style="color: var(--dark-blue); margin-bottom: 8px;"><i class="fas fa-shield-alt"></i> Infrastructure Reliability</h4>
+        <p style="color: var(--text-light); font-size: 0.95rem;">Configured CloudWatch alarms and dashboards, reducing incident response time by 30% to ensure high application uptime.</p>
+    </div>
+
+    <div class="value-item" style="background: var(--bg-soft); padding: 1.5rem; border-radius: 12px; border-left: 5px solid var(--primary-blue);">
+        <h4 style="color: var(--primary-blue); margin-bottom: 8px;"><i class="fas fa-server"></i> Cloud Scalability</h4>
+        <p style="color: var(--text-light); font-size: 0.95rem;">Proficient in provisioning repeatable AWS infrastructure with Terraform and CloudFormation across multiple environments.</p>
+    </div>
+
+    <div class="status-badge" style="margin-top: 10px; padding: 10px; background: #acc5d5; color: #263184; border-radius: 8px; font-weight: bold; text-align: center; border: 1px solid #5ba8da;">
+        🟢 Current Status: Actively seeking entry-level AWS DevOps opportunities.
+    </div>
+</div>
+    
+</div>
+          
         </div>
     </section>
 
@@ -754,4 +816,3 @@
     </script>
 </body>
 </html>
-
